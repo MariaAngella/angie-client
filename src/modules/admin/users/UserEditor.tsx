@@ -1,14 +1,15 @@
 import React from 'react';
 import * as yup from "yup";
 import {reqString} from "../../../data/validations";
-import {FormikActions} from "formik";
+import {FormikHelpers} from "formik";
 import Grid from "@material-ui/core/Grid";
 import XForm from "../../../components/forms/XForm";
 import XTextInput from "../../../components/inputs/XTextInput";
 
 import {remoteRoutes} from "../../../data/constants";
-import {ISelectOpt, XRemoteSelect} from "../../../components/inputs/XRemoteSelect";
+import {XRemoteSelect} from "../../../components/inputs/XRemoteSelect";
 import {handleSubmission, ISubmission} from "../../../utils/formHelpers";
+import {IOption} from "../../../components/inputs/inputHelpers";
 
 interface IProps {
     data: any
@@ -35,7 +36,7 @@ const schemaNew = yup.object().shape(
 
 const UserEditor = ({data, isNew, done}: IProps) => {
 
-    function handleSubmit(values: any, actions: FormikActions<any>) {
+    function handleSubmit(values: any, actions: FormikHelpers<any>) {
         const toSave: any = {
             id: values.id,
             username: values.username,
@@ -63,7 +64,7 @@ const UserEditor = ({data, isNew, done}: IProps) => {
                         name="contact"
                         label="Person"
                         remote={remoteRoutes.contactsPerson}
-                        parser={({id, name}: any): ISelectOpt => ({id, label: name})}
+                        parser={({id, name}: any): IOption => ({value: id, label: name})}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -71,7 +72,7 @@ const UserEditor = ({data, isNew, done}: IProps) => {
                         name="group"
                         label="Group"
                         remote={remoteRoutes.userGroups}
-                        parser={({id, name}: any): ISelectOpt => ({id, label: name})}
+                        parser={({id, name}: any): IOption => ({value: id, label: name})}
                     />
                 </Grid>
                 <Grid item xs={12}>

@@ -2,7 +2,7 @@ import React from 'react';
 import * as yup from "yup";
 import {reqDate, reqString} from "../../../../data/validations";
 import {idCategories} from "../../../../data/comboCategories";
-import {FormikActions} from "formik";
+import {FormikHelpers} from "formik";
 import Grid from "@material-ui/core/Grid";
 import XForm from "../../../../components/forms/XForm";
 import XTextInput from "../../../../components/inputs/XTextInput";
@@ -36,10 +36,10 @@ const schema = yup.object().shape(
 const IdentificationEditor = ({data, isNew, contactId, done}: IProps) => {
     const dispatch = useDispatch();
 
-    function handleSubmit(values: any, actions: FormikActions<any>) {
+    function handleSubmit(values: any, actions: FormikHelpers<any>) {
         const submission: ISubmission = {
-            url: `${remoteRoutes.contactsIdentification}/${contactId}`,
-            values, actions, isNew,
+            url: remoteRoutes.contactsIdentification,
+            values:{...values,contactId}, actions, isNew,
             onAjaxComplete: (data: any) => {
                 dispatch({
                     type: isNew ? crmConstants.crmAddIdentification : crmConstants.crmEditIdentification,
@@ -87,14 +87,14 @@ const IdentificationEditor = ({data, isNew, contactId, done}: IProps) => {
                     <XDateInput
                         name="startDate"
                         label="Issue Date"
-                        inputVariant='outlined'
+                        variant='outlined'
                     />
                 </Grid>
                 <Grid item xs={6}>
                     <XDateInput
                         name="expiryDate"
                         label="Expiry Date"
-                        inputVariant='outlined'
+                        variant='outlined'
                     />
                 </Grid>
                 <Grid item xs={12}>
