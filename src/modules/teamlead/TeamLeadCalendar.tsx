@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
 import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
 import Typography from '@material-ui/core/Typography';
-import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
+import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import classNames from 'clsx';
 import {
   Scheduler,
@@ -235,7 +235,18 @@ const CellBase = React.memo(({
       setCreateDialog(false)
   }
 
-    const createComponent = <AssignTask data={{}} done={closeCreateDialog}/>
+    // const createComponent = <AssignTask data={{}} done={closeCreateDialog}/>
+    
+    const createComponent = <Paper>
+     
+      <AppointmentTooltip
+          
+            showOpenButton
+          />
+      <AppointmentForm />
+      
+  </Paper>
+    
     const createTitle = "New Assignment"
   return (
     
@@ -312,8 +323,8 @@ export default class TeamLeadCalendar extends React.PureComponent<{},any> {
     appoints.push({
       ownerId:item["id"],
       title:item["taskId"],
-      startDate:new Date(item["start_date"]),
-      endDate:new Date(item["end_date"]),
+      startDate:new Date(item["startDate"]),
+      endDate:new Date(item["endDate"]),
      
       
     })
@@ -363,6 +374,9 @@ export default class TeamLeadCalendar extends React.PureComponent<{},any> {
           <EditingState
             onCommitChanges={this.commitChanges}
           />
+
+<IntegratedEditing />
+
           <ViewState
             defaultCurrentDate={defaultCurrentDate}
 

@@ -44,10 +44,10 @@ interface IProps {
 const schema = yup.object().shape(
   {
       taskId: reqString,
-      start_date: reqDate,
-      end_date: reqDate,
-      task_info: reqString,
-      assigned_to: reqObject,
+      startDate: reqDate,
+      endDate: reqDate,
+      taskInfo: reqString,
+      assignedTo: reqObject,
       
      
   }
@@ -56,10 +56,10 @@ const schema = yup.object().shape(
 const initialValues = {
 
   taskId: '',
-  start_date: '',
-  end_date: '',
-  task_info: '',
-  assigned_to: null,
+  startDate: '',
+  endDate: '',
+  taskInfo: '',
+  assignedTo: null,
   
 }
 
@@ -106,10 +106,10 @@ const AssignTask = ({ done}: IProps) => {
 
         const toSave: ICreateDayDto = {
       taskId: values.taskId,
-      start_date: values.start_date,
-      end_date: values.end_date,
-      task_info: values.task_info,
-      assigned_to: values.assigned_to.value,
+      startDate: values.startDate,
+      endDate: values.endDate,
+      taskInfo: values.taskInfo,
+      assignedTo: values.assignedTo.value,
      
 
         }
@@ -178,21 +178,21 @@ const AssignTask = ({ done}: IProps) => {
                         </Grid>
                         <RightPadded>
                         <XDateInput
-                                name="start_date"
+                                name="startDate"
                                 label="Start Date"
                                 
                             />
                         </RightPadded>
                         <LeftPadded>
                         <XDateInput
-                                name="end_date"
+                                name="endDate"
                                 label="End Date"
                                 
                             />
                         </LeftPadded>
                         <Grid item xs={12}>
                         <XTextInput
-                                name="task_info"
+                                name="taskInfo"
                                 label="Task Details"
                                 type="text"
                                 variant='outlined'
@@ -204,7 +204,7 @@ const AssignTask = ({ done}: IProps) => {
                             remote={remoteRoutes.contactsPerson}
                             filter={{'firstName[]': ''}}
                             parser={({firstName, id}: any) => ({label: firstName, value: id})}
-                            name="assigned_to"
+                            name="assignedTo"
                             label="Volunteers"
                             variant='outlined'
                             />
