@@ -105,16 +105,16 @@ const AssignTask = ({ done}: IProps) => {
     function handleSubmit(values: any, actions: FormikHelpers<any>) {
 
         const toSave: ICreateDayDto = {
-      taskId: values.taskId,
+    //   taskId: values.taskId,
       startDate: values.startDate,
       endDate: values.endDate,
       taskInfo: values.taskInfo,
-      assignedTo: values.assignedTo.value,
+      userId: values.userId.value,
      
 
         }
 
-        post(remoteRoutes.day, toSave,
+        post(remoteRoutes.appointment, toSave,
             (data) => {
                 Toast.info('Operation successful')
                 actions.resetForm()

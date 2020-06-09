@@ -93,7 +93,7 @@ const routes = [
     // End of Team Lead's menu items
 
     {
-        name: "Teamlead Calendar",
+        name: "Teamlead",
         icon: AssignmentIcon,
         items: [
             {
